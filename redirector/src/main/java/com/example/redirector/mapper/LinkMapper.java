@@ -10,8 +10,8 @@ public class LinkMapper {
 
     public LinkEntity toEntity(CreateRedirectRequest request){
         return LinkEntity.builder()
-                .fullLink(request.getRealLink())
-                .shortLink(request.getShortName())
+                .fullLink(request.getFullLink())
+                .shortLink(request.getShortLink())
                 .build();
     }
 
