@@ -23,7 +23,7 @@ public class LinkService {
 
     }
 
-    private CreateRedirectResponse addLink(CreateRedirectRequest request) {
+    public CreateRedirectResponse addLink(CreateRedirectRequest request) {
 
         if (linkRepository.existsByShortLink(request.getShortName())) {
             throw new IllegalArgumentException("This short name is already taken");
