@@ -11,7 +11,6 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Accessors(chain = true)
 @Entity
 @Table(name = "links")
 public class LinkEntity {
