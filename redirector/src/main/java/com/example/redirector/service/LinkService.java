@@ -6,6 +6,7 @@ import com.example.redirector.entity.LinkEntity;
 import com.example.redirector.mapper.LinkMapper;
 import com.example.redirector.repository.LinkRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +24,10 @@ public class LinkService {
 
     }
 
+    @Transactional
     public CreateRedirectResponse addLink(CreateRedirectRequest request) {
 
-        if (linkRepository.existsByShortLink(request.getShortName())) {
+        if (linkRepository.existsByShortLink(request.getShortLink())) {
             throw new IllegalArgumentException("This short name is already taken");
         }
 

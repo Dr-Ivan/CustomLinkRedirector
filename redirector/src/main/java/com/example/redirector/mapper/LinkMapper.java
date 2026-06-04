@@ -18,8 +18,8 @@ public class LinkMapper {
     public CreateRedirectResponse toResponse(LinkEntity entity){
         return CreateRedirectResponse.builder()
                 .id(entity.getId())
-                .realLink(entity.getFullLink())
-                .shortName(entity.getShortLink())
+                .fullLink(entity.getFullLink())
+                .shortLink(entity.getShortLink())
                 .build();
     }
 
