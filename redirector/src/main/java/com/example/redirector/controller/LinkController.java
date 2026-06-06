@@ -1,7 +1,10 @@
 package com.example.redirector.controller;
 
 import com.example.redirector.dto.CreateRedirectRequest;
+import com.example.redirector.dto.CreateRedirectResponse;
+import com.example.redirector.service.LinkService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,13 +13,16 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/link")
 @CrossOrigin("*")
+@RequiredArgsConstructor
 public class LinkController {
 
-    private String realLink = "https://google.com";
+    private final LinkService linkService;
 
-    @GetMapping
-    public ResponseEntity<Void> redirect() {
-        String link = this.realLink;
+    @GetMapping("/{shortLink}")
+    public ResponseEntity<Void> redirect(
+            @PathVariable("shortLink") String shortLink
+    ) {
+        String link = linkService.getFullLink(shortLink);
 
         return ResponseEntity.status(HttpStatus.FOUND)
                 .header(HttpHeaders.LOCATION, link)
@@ -24,9 +30,11 @@ public class LinkController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> createRedirect(@RequestBody @Valid CreateRedirectRequest createRedirectRequest){
-        this.realLink = createRedirectRequest.getRealLink();
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+    public ResponseEntity<CreateRedirectResponse> createRedirect(
+            @Valid @RequestBody CreateRedirectRequest createRedirectRequest
+    ) {
+        CreateRedirectResponse response = linkService.addLink(createRedirectRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
 }
