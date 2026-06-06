@@ -8,14 +8,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class LinkMapper {
 
-    public LinkEntity toEntity(CreateRedirectRequest request){
+    public LinkEntity toEntity(CreateRedirectRequest request) {
         return LinkEntity.builder()
                 .fullLink(request.getFullLink())
                 .shortLink(request.getShortLink())
                 .build();
     }
 
-    public CreateRedirectResponse toResponse(LinkEntity entity){
+    public CreateRedirectResponse toResponse(LinkEntity entity) {
         return CreateRedirectResponse.builder()
                 .id(entity.getId())
                 .fullLink(entity.getFullLink())
