@@ -8,6 +8,8 @@ import com.example.redirector.repository.LinkRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
@@ -16,6 +18,10 @@ public class LinkService {
     private final LinkRepository linkRepository;
     private final LinkMapper linkMapper;
 
+    @Cacheable(
+            value = "links_cache",
+            key = "#shortLink"
+    )
     public String getFullLink(String shortLink) {
 
         return linkRepository.findByShortLink(shortLink)
@@ -25,6 +31,12 @@ public class LinkService {
     }
 
     @Transactional
+    // potential update in future versions
+    // in current version eviction has no effect
+    @CacheEvict(
+            value = "links_cache",
+            key = "#request.shortLink"
+    )
     public CreateRedirectResponse addLink(CreateRedirectRequest request) {
 
         if (linkRepository.existsByShortLink(request.getShortLink())) {
