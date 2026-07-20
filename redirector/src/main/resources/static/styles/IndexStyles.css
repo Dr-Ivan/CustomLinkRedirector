@@ -1,0 +1,247 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Карточка-контейнер */
+.card {
+    max-width: 700px;
+    width: 100%;
+    background: white;
+    border-radius: 32px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.01);
+}
+
+/* Шапка с иконкой и названием */
+.header {
+    background: linear-gradient(120deg, #4a5568, #2d3748);
+    color: white;
+    padding: 32px 32px 24px;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+}
+
+.header p {
+    font-size: 1rem;
+    opacity: 0.9;
+    line-height: 1.4;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.body {
+    padding: 32px;
+}
+
+.field-group {
+    margin-bottom: 28px;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #1a202c;
+    font-size: 0.9rem;
+}
+
+.label-hint {
+    font-weight: normal;
+    font-size: 0.75rem;
+    color: #718096;
+    margin-left: 8px;
+}
+
+.input-wrapper {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+input, .result-box {
+    flex: 1;
+    padding: 14px 16px;
+    font-size: 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 20px;
+    transition: all 0.2s;
+    font-family: inherit;
+    background: white;
+}
+
+input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Результат */
+.result-box {
+    background: #f7fafc;
+    color: #2d3748;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    word-break: break-all;
+    cursor: pointer;
+    border-color: #cbd5e0;
+}
+
+.result-box:active {
+    background: #edf2f7;
+}
+
+/* Кнопки */
+.btn {
+    padding: 10px 20px;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: #edf2f7;
+    color: #2d3748;
+    white-space: nowrap;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    background: #48bb78;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #38a169;
+    transform: translateY(-1px);
+}
+
+.btn-outline {
+    background: white;
+    border: 2px solid #cbd5e0;
+}
+
+.btn-outline:hover {
+    border-color: #667eea;
+    background: #f7fafc;
+}
+
+/* Главная кнопка отправки */
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 1.1rem;
+    margin-top: 16px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(102, 126, 234, 0.5);
+}
+
+.submit-btn:active {
+    transform: translateY(1px);
+}
+
+/* Уведомления */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: #2d3748;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 60px;
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.toast.show {
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Сообщение об ошибке под полями */
+.error-msg {
+    color: #e53e3e;
+    font-size: 0.75rem;
+    margin-top: 6px;
+    display: none;
+}
+
+.error-msg.show {
+    display: block;
+}
+
+/* Разделитель */
+hr {
+    margin: 20px 0;
+    border: none;
+    border-top: 1px solid #e2e8f0;
+}
+
+.footer {
+    text-align: center;
+    font-size: 0.7rem;
+    color: #a0aec0;
+    margin-top: 20px;
+}
+
+@media (max-width: 550px) {
+    .body {
+        padding: 24px;
+    }
+    .input-wrapper {
+        flex-wrap: wrap;
+    }
+    .btn {
+        flex-shrink: 0;
+    }
+    .toast {
+        white-space: normal;
+        text-align: center;
+        max-width: 90%;
+    }
+}
