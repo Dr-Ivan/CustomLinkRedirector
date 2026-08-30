@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Сделайте длинную ссылку короткой</title>
+    <link rel="stylesheet" href="./styles/IndexStyles.css">
+</head>
+<body>
+
+<div class="card">
+    <div class="header">
+        <h1>Сокращатель ссылок</h1>
+        <p>Превращает длинные интернет-адреса в короткие и удобные</p>
+    </div>
+    <div class="body">
+        <div style="background: #ebf8ff; padding: 16px; border-radius: 20px; margin-bottom: 28px;">
+            <p style="font-size: 0.9rem; color: #2c5282; margin: 0;">
+                💡 <strong>Как это работает?</strong> <br>Вы копируете длинную ссылку (например,
+                <span style="font-family: monospace;">https://example.com/очень/длинный/адрес</span>),
+                <br> придумываете для неё короткое имя или нажимаете кнопку «Случайно» - и получаете
+                короткую ссылку. <br>Ей удобно делиться с друзьями, вставлять в соцсети или сообщения.
+            </p>
+        </div>
+
+        <div class="field-group">
+            <label>Длинная ссылка <span class="label-hint">(начинается с http:// или https://)</span></label>
+            <div class="input-wrapper">
+                <input type="text" id="fullLinkInput" placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+            </div>
+            <div id="fullLinkError" class="error-msg">⚠️ Некорректная ссылка (должна начинаться с http:// или https://)</div>
+        </div>
+
+        <div class="field-group">
+            <label>Желаемое короткое имя <span class="label-hint">(латиница, цифры, до 255 символов)</span></label>
+            <div class="input-wrapper">
+                <input type="text" id="shortLinkInput" placeholder="например: my_link, blog2025" maxlength="255">
+                <button type="button" id="randomBtn" class="btn btn-outline">Случайно</button>
+            </div>
+            <div id="shortLinkError" class="error-msg"></div>
+        </div>
+
+        <div class="field-group">
+            <label>Ваша короткая ссылка <span class="label-hint">(нажмите на поле, чтобы скопировать)</span></label>
+            <div class="input-wrapper">
+                <input type="text" id="resultLink" class="result-box" readonly placeholder="Здесь появится короткая ссылка" onclick="copyResult()">
+                <button type="button" id="copyBtn" class="btn btn-outline">Копировать</button>
+            </div>
+        </div>
+
+        <button id="submitBtn" class="submit-btn">СОКРАТИТЬ ССЫЛКУ</button>
+
+        <hr>
+        <div class="footer">
+            Просто и быстро. Короткие ссылки не меняются после создания.
+            <br>
+            <a href="https://github.com/Dr-Ivan"> Связаться с автором. </a>
+        </div>
+    </div>
+</div>
+
+<!-- Всплывающее уведомление -->
+<div id="toast" class="toast"> Скопировано!</div>
+
+<script src="./scripts/IndexScript.js"> </script>
+</body>
+</html>
